@@ -140,3 +140,57 @@ def display_menu():
     print("4. View Detailed Portfolio Summary")
     print("5. Save Portfolio and Exit")
     print("=" * 45)
+    
+
+def main():
+
+    
+    """
+    The entry point of the program.
+    Contains the main control loop for the application.
+    """
+    my_portfolio = Portfolio("User")
+    my_portfolio.load_from_disk()
+
+    # Main control loop (Requirement: Control loops)
+    while True:
+        display_menu()
+        choice = input("Enter your selection (1-5): ").strip()
+
+        if choice == '1':
+            perform_basic_calculation()
+
+        elif choice == '2':
+            calculate_compound_interest()
+
+        elif choice == '3':
+            try:
+                name = input("Asset Name (e.g., Tesla Stock): ")
+                kind = input("Asset Type (e.g., Equity, Crypto): ")
+                price = input("Current Unit Price: ")
+                qty = input("Quantity Owned: ")
+
+                new_asset = Asset(name, kind, price, qty)
+                my_portfolio.add_asset(new_asset)
+            except ValueError:
+                print("\n[ERROR] Price and Quantity must be numeric values.")
+
+        elif choice == '4':
+            if not my_portfolio.assets:
+                print("\n[INFO] Your portfolio is currently empty.")
+            else:
+                print("\n--- Current Holdings ---")
+                for index, asset in enumerate(my_portfolio.assets, 1):
+                    print(f"{index}. {asset}")
+
+                total_val = my_portfolio.get_total_portfolio_value()
+                print("-" * 30)
+                print(f"Total Portfolio Cost: ${total_val:,.2f}")
+
+        elif choice == '5':
+            my_portfolio.save_to_disk()
+            print("\nExiting program. All data has been secured.")
+            sys.exit()
+
+        else:
+            print("\n[INVALID] Selection not recognized. Please try again.")
