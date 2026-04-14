@@ -140,5 +140,3 @@ def display_menu():
     print("4. View Detailed Portfolio Summary")
     print("5. Save Portfolio and Exit")
     print("=" * 45)
-
-def main()
