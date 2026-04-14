@@ -125,3 +125,20 @@ def calculate_compound_interest():
         print(f"Total Gain: ${amount - p:,.2f}")
     except ValueError:
         print("\n[ERROR] Please provide valid numerical inputs.")
+
+# =============================================================================
+# MAIN APPLICATION LOGIC (Control Loops)
+# =============================================================================
+
+def display_menu():
+    print("\n" + "=" * 45)
+    print("      FINANCE & ASSET TRACKER v1.0")
+    print("=" * 45)
+    print("1. Standard Arithmetic Calculator")
+    print("2. Compound Interest Projection")
+    print("3. Add New Asset to Portfolio")
+    print("4. View Detailed Portfolio Summary")
+    print("5. Save Portfolio and Exit")
+    print("=" * 45)
+
+def main()
