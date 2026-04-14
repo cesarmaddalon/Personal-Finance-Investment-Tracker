@@ -194,3 +194,9 @@ def main():
 
         else:
             print("\n[INVALID] Selection not recognized. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
+# =================================
+# END
