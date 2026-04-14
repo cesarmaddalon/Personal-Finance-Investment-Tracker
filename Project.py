@@ -69,3 +69,59 @@ class Portfolio:
             print(f"\n[INFO] Loaded {len(self.assets)} assets from storage.")
         except (ValueError, IOError) as e:
             print(f"\n[ERROR] Failed to load portfolio: {e}")
+            
+
+# =============================================================================
+# CALCULATION MODULES (Functions)
+# =============================================================================
+
+def perform_basic_calculation():
+    """
+    Standard calculator functionality.
+    Demonstrates basic functions and arithmetic operators.
+    """
+    print("\n--- Basic Calculator ---")
+    try:
+        n1 = float(input("Enter first number: "))
+        op = input("Enter operator (+, -, *, /): ").strip()
+        n2 = float(input("Enter second number: "))
+
+        if op == '+':
+            res = n1 + n2
+        elif op == '-':
+            res = n1 - n2
+        elif op == '*':
+            res = n1 * n2
+        elif op == '/':
+            if n2 == 0:
+                raise ZeroDivisionError("Math Error: Division by zero is undefined.")
+            res = n1 / n2
+        else:
+            print("Invalid operator selected.")
+            return
+
+        print(f"\nResult: {n1} {op} {n2} = {res}")
+    except ValueError:
+        print("\n[ERROR] Invalid input. Please enter numbers only.")
+    except ZeroDivisionError as e:
+        print(f"\n[ERROR] {e}")
+
+
+def calculate_compound_interest():
+    """
+    Advanced financial calculation.
+    Demonstrates the use of the math library and user input logic.
+    """
+    print("\n--- Compound Interest Projection ---")
+    try:
+        p = float(input("Principal Amount ($): "))
+        r = float(input("Annual Interest Rate (%): ")) / 100
+        t = float(input("Time Horizon (Years): "))
+        n = int(input("Compounding periods per year (e.g., 12): "))
+
+        # Formula: A = P(1 + r/n)^(nt)
+        amount = p * (1 + r / n) ** (n * t)
+        print(f"\nProjected Value: ${amount:,.2f}")
+        print(f"Total Gain: ${amount - p:,.2f}")
+    except ValueError:
+        print("\n[ERROR] Please provide valid numerical inputs.")
